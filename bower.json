@@ -1,0 +1,27 @@
+{
+  "name": "mcash.shortlink.js",
+  "version": "0.1.0",
+  "homepage": "https://github.com/mcash/mcash.shortlink.js",
+  "authors": [
+    "mCASH developers <dev@mcash.no>"
+  ],
+  "main": "mcash.shortlink.js",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "mCASH"
+  ],
+  "devDependencies": {
+      "requirejs": "2.1.14",
+      "jasmine": "2.0.0"
+  },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

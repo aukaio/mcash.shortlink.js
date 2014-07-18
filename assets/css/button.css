@@ -1,0 +1,60 @@
+@font-face {
+  font-family: 'HermesFB Regular';
+  src: url('../fonts/HermesFB-Regular.eot');
+  src: url('../fonts/HermesFB-Regular.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/HermesFB-Regular.woff') format('woff'),
+       url('../fonts/HermesFB-Regular.ttf')  format('truetype'),
+       url('../fonts/HermesFB-Regular.svg#bxocimmyrq') format('svg');
+  font-style: normal;
+  font-weight: 200;
+}
+
+button.paywithmcash,
+button.paywithmcash:visited {
+	border: 1px solid #ccc;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background-color: #ebebeb;
+	/*width: 300px;*/
+	height: 44px;
+	font-family: 'HermesFB Regular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	text-align: center;
+	color: #505050;
+	line-height: 1;
+	margin: 0 0 15px 0;
+	padding: 0;
+	-webkit-appearance: none;
+	outline: none;
+	cursor: pointer;
+}
+button.paywithmcash:hover {
+	border: 1px solid #ddd;
+	background: #f2f2f2;
+}
+button.paywithmcash:active {
+	-webkit-box-shadow: inset 0 4px 4px rgba(0,0,0,.05);
+	-moz-box-shadow: inset 0 4px 4px rgba(0,0,0,.05);
+	box-shadow: inset 0 4px 4px rgba(0,0,0,.05);
+	position: relative;
+	top: 1px;
+}
+button.paywithmcash img {
+	width: 30px !important;
+	height: 30px !important;
+	margin: 6px !important;
+	float: left;
+}
+button.paywithmcash span.label {
+	border-left: 1px solid #ccc;
+	width: auto;
+	max-width: 100%;
+	line-height: 42px;
+	text-align: center;
+	padding: 0 20px;
+	float: left;
+}
+button.paywithmcash:hover span.label {
+	border-color: #ddd;
+}
