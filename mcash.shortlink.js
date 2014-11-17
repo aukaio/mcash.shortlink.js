@@ -82,8 +82,8 @@
         },
 
         createmCASHButton = function (mCASHDiv, unique_id, prefix, alternate) {
-            var labelKey = mCASHDiv.getAttribute('data-mcash-lang') || 'en',
-                greeting = MCASH_LOCALE_MAP[labelKey] || MCASH_LOCALE_MAP.en,
+            var labelKey = mCASHDiv.getAttribute('data-mcash-lang') || 'no',
+                greeting = MCASH_LOCALE_MAP[labelKey] || MCASH_LOCALE_MAP.no,
                 span,
                 mCASHPayImg,
                 mCASHButton,
