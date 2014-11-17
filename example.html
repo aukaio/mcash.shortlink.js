@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>mcash.shortlink.js</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="mcash.shortlink.js"></script>
+    <title>mcash.shortlink.js</title>
 </head>
 <body>
 
@@ -11,8 +12,10 @@
 <div class="mcash-shortlink" data-shortlink-id="moo" data-shortlink-argstring="far" data-alternate="false" data-mcash-lang="en"></div>
 <div class="mcash-shortlink" data-shortlink-id="boo" data-alternate="true"></div>
 
-<script src="mcash.shortlink.js"></script>
-<script>mCASH.displayQRorButton();</script>
+<script>
+    // With jquery installed use -> $(document).ready(mCASH.displayQRorButton);
+    mCASH.displayQRorButton();
+</script>
 
 </body>
 </html>

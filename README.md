@@ -5,7 +5,7 @@ A standalone JavaScript library that helps you display QR-codes or "Pay with mCA
 On a phone a button will be shown, that when pressed opens the mCASH app and makes a call to mCASH.
 If the phone does not have mCASH installed the user will be redirected to GooglePlay or AppStore.
 
-This library is distributed with [bower](http://bower.io). In order to install it do
+This library is distributed with [bower](http://bower.io). In order to install the full package, including JavaScript, CSS, images and fonts use bower:
 
 ```
 bower install mcash.shortlink.js
