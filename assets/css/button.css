@@ -9,52 +9,86 @@
   font-weight: 200;
 }
 
-button.paywithmcash,
-button.paywithmcash:visited {
-	border: 1px solid #ccc;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	background-color: #ebebeb;
-	/*width: 300px;*/
-	height: 44px;
-	font-family: 'HermesFB Regular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	font-size: 16px;
-	text-align: center;
-	color: #505050;
-	line-height: 1;
-	margin: 0 0 15px 0;
-	padding: 0;
-	-webkit-appearance: none;
-	outline: none;
-	cursor: pointer;
+.paywithmcash,
+.paywithmcash:visited {
+    border: 1px solid #ccc;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #ebebeb;
+    background-image: -webkit-linear-gradient(bottom, rgba(0,0,0,.05), rgba(0,0,0,0));
+	background-image: -moz-linear-gradient(bottom, rgba(0,0,0,.05), rgba(0,0,0,0));
+	background-image: -o-linear-gradient(bottom, rgba(0,0,0,.05), rgba(0,0,0,0));
+	background-image: -ms-linear-gradient(bottom, rgba(0,0,0,.05), rgba(0,0,0,0));
+	background-image: linear-gradient(to top, rgba(0,0,0,.05), rgba(0,0,0,0));
+    /*width: 300px;*/
+    height: 44px;
+    font-family: 'HermesFB Regular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    text-align: center;
+    color: #505050;
+    line-height: 1;
+    margin: 0;
+    padding: 0 20px;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
 }
-button.paywithmcash:hover {
-	border: 1px solid #ddd;
-	background: #f2f2f2;
+.paywithmcash:hover {
+    border: 1px solid #ddd;
+    background: #f2f2f2;
 }
-button.paywithmcash:active {
-	-webkit-box-shadow: inset 0 4px 4px rgba(0,0,0,.05);
-	-moz-box-shadow: inset 0 4px 4px rgba(0,0,0,.05);
-	box-shadow: inset 0 4px 4px rgba(0,0,0,.05);
-	position: relative;
-	top: 1px;
+.paywithmcash:active {
+    -webkit-box-shadow: inset 0 4px 4px rgba(0,0,0,.05);
+    -moz-box-shadow: inset 0 4px 4px rgba(0,0,0,.05);
+    box-shadow: inset 0 4px 4px rgba(0,0,0,.05);
+    position: relative;
+    top: 1px;
+    color: #505050;
 }
-button.paywithmcash img {
-	width: 30px !important;
-	height: 30px !important;
-	margin: 6px !important;
-	float: left;
+.paywithmcash  img {
+    width: auto !important;
+    height: 30px !important;
+    margin: 6px !important;
+    float: right;
 }
-button.paywithmcash span.label {
-	border-left: 1px solid #ccc;
-	width: auto;
-	max-width: 100%;
-	line-height: 42px;
-	text-align: center;
-	padding: 0 20px;
-	float: left;
+.paywithmcash .mcash-label {
+    color: #002f65;
+    width: auto;
+    max-width: 100%;
+    line-height: 42px;
+    text-align: center;
+    padding: 0 4px 0 0;
+    float: left;
 }
-button.paywithmcash:hover span.label {
-	border-color: #ddd;
+.paywithmcash:hover .mcash-label {
+    border-color: #ddd;
+}
+
+.mcash-green {
+	border: 1px solid #4ea190;
+	background-color: #57b3a0;
+	background-image: -webkit-linear-gradient(bottom, rgba(0,0,0,.1), rgba(0,0,0,0));
+	background-image: -moz-linear-gradient(bottom, rgba(0,0,0,.1), rgba(0,0,0,0));
+	background-image: -o-linear-gradient(bottom, rgba(0,0,0,.1), rgba(0,0,0,0));
+	background-image: -ms-linear-gradient(bottom, rgba(0,0,0,.1), rgba(0,0,0,0));
+	background-image: linear-gradient(to top, rgba(0,0,0,.1), rgba(0,0,0,0));
+}
+
+.mcash-green .mcash-label {
+	color: #fff;
+}
+
+.mcash-green:hover {
+	border: 1px solid #4ea190;
+    background: #53aa98;
+}
+
+.mcash-green:active {
+    -webkit-box-shadow: inset 0 4px 4px rgba(0,0,0,.05);
+    -moz-box-shadow: inset 0 4px 4px rgba(0,0,0,.05);
+    box-shadow: inset 0 4px 4px rgba(0,0,0,.05);
+    position: relative;
+    top: 1px;
+    color: #fff;
 }

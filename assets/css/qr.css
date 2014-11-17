@@ -1,0 +1,76 @@
+@font-face {
+  font-family: 'HermesFB Regular';
+  src: url('../fonts/HermesFB-Regular.eot');
+  src: url('../fonts/HermesFB-Regular.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/HermesFB-Regular.woff') format('woff'),
+       url('../fonts/HermesFB-Regular.ttf')  format('truetype'),
+       url('../fonts/HermesFB-Regular.svg#bxocimmyrq') format('svg');
+  font-style: normal;
+  font-weight: 200;
+}
+
+.mcash-wrapper {
+    display: inline-block;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #ebebeb;
+    padding: 10px;
+}
+.mcash-wrapper .mcash-qr-image {
+    border: 1px solid #dadada;
+    max-width: 280px;
+    display: block;
+    margin-bottom: 10px;
+}
+.mcash-nav {
+    overflow: hidden;
+}
+.mcash-logo {
+    width: auto;
+    height: 24px;
+    float: left;
+}
+.mcash-link {
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-position: top left;
+    width: 24px;
+    height: 24px;
+    font-family: 'HermesFB Regular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    font-size: 12px;
+    color: #fff;
+    line-height: 24px;
+    text-indent: -9999em;
+    margin-left: 6px;
+    float: right;
+}
+.mcash-ios {
+    background-image: url('../images/ios.png');
+}
+.mcash-ios-w {
+    background-image: url('../images/ios_white.png');
+}
+.mcash-android {
+    background-image: url('../images/android.png');
+}
+.mcash-android-w {
+    background-image: url('../images/android_white.png');
+}
+.mcash-green {
+    display: inline-block;
+    border: 1px solid #4ea190;
+    background-color: #57b3a0;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 10px;
+}
+.mcash-green .mcash-qr-image {
+    border: 1px solid #4ea190;
+    max-width: 280px;
+    display: block;
+    margin-bottom: 10px;
+}
