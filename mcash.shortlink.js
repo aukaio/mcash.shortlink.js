@@ -19,7 +19,6 @@
         MCASH_LOGO_ALTERNATE = 'assets/images/mCASH_logo_white.png',
         MCASH_BUTTON_CSS = 'assets/css/button.css',
         MCASH_QR_CSS = 'assets/css/qr.css',
-        IS_INSIDE_MCASH = false,
         MCASH_LOCALE_MAP = {
             no: 'Betal med',
             en: 'Pay with'
@@ -49,17 +48,14 @@
 
         scan = function (shortlinkUrl) {
             var embedded_shortlink = 'mcash://qr?code=' + shortlinkUrl;
-            //Open the app, if installed
 
             if (navigator.userAgent.match(/Android|Dalvik/)) {
                 location.href = shortlinkUrl;
             } else {
                 location.href = embedded_shortlink;
-                if (!IS_INSIDE_MCASH) {
-                    setTimeout(function () {
-                        location.href = MCASH_FALLBACK_DOWNLOAD_URL;
-                    }, 300);
-                }
+                setTimeout(function () {
+                    location.href = MCASH_FALLBACK_DOWNLOAD_URL;
+                }, 300);
             }
         },
 
