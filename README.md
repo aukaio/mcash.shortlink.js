@@ -26,7 +26,7 @@ Try the example
 If you have cloned the repository, you can see the example by
 ```
 python -m SimpleHTTPServer
-open http://0.0.0.0:8000/example.html
+open http://localhost:8000/example.html
 ```
 
 Test suit
@@ -34,5 +34,5 @@ Test suit
 ```
 bower install
 python -m SimpleHTTPServer
-open http://0.0.0.0:8000/tests/specRunner.html
+open http://localhost:8000/tests/specRunner.html
 ```
