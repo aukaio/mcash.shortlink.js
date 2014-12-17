@@ -19,13 +19,18 @@
         MCASH_LOGO_ALTERNATE = 'assets/images/mCASH_logo_white.png',
         MCASH_BUTTON_CSS = 'assets/css/button.css',
         MCASH_QR_CSS = 'assets/css/qr.css',
-        IS_INSIDE_MCASH = false,
         MCASH_LOCALE_MAP = {
             no: 'Betal med',
             en: 'Pay with'
         },
         MCASH_DESKTOP_IOS = 'https://itunes.apple.com/no/app/mcash/id550136730?mt=8',
         MCASH_DESKTOP_ANDROID = 'https://play.google.com/store/apps/details?id=no.mcash',
+
+        exports = {
+            redirect_to: function (url) {
+                location.href = url;
+            }
+        },
 
         platformHasNativeSupport = function () {
             return navigator.userAgent.match(/iPhone|iPad|iPod|Android|Dalvik/);
@@ -41,7 +46,7 @@
                 if (match && match[1]) {
                     parser = document.createElement('a');
                     parser.href = match[1];
-                    return parser.pathname;
+                    return parser.href;
                 }
             }
             return '/';
@@ -49,17 +54,14 @@
 
         scan = function (shortlinkUrl) {
             var embedded_shortlink = 'mcash://qr?code=' + shortlinkUrl;
-            //Open the app, if installed
 
             if (navigator.userAgent.match(/Android|Dalvik/)) {
-                location.href = shortlinkUrl;
+                exports.redirect_to(shortlinkUrl);
             } else {
-                location.href = embedded_shortlink;
-                if (!IS_INSIDE_MCASH) {
-                    setTimeout(function () {
-                        location.href = MCASH_FALLBACK_DOWNLOAD_URL;
-                    }, 300);
-                }
+                exports.redirect_to(embedded_shortlink);
+                setTimeout(function () {
+                    exports.redirect_to(MCASH_FALLBACK_DOWNLOAD_URL);
+                }, 300);
             }
         },
 
@@ -169,9 +171,7 @@
             wrapper.appendChild(qrCode);
             wrapper.appendChild(nav);
             mCASHDiv.appendChild(wrapper);
-        },
-
-        exports = {};
+        };
 
     exports.displayQRorButton = function () {
         var mCASHDivs = document.getElementsByClassName('mcash-shortlink'),
