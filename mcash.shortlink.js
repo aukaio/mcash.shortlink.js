@@ -40,7 +40,7 @@
                 if (match && match[1]) {
                     parser = document.createElement('a');
                     parser.href = match[1];
-                    return parser.pathname;
+                    return parser.href;
                 }
             }
             return '/';
