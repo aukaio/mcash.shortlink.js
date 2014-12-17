@@ -26,6 +26,12 @@
         MCASH_DESKTOP_IOS = 'https://itunes.apple.com/no/app/mcash/id550136730?mt=8',
         MCASH_DESKTOP_ANDROID = 'https://play.google.com/store/apps/details?id=no.mcash',
 
+        exports = {
+            redirect_to: function (url) {
+                location.href = url;
+            }
+        },
+
         platformHasNativeSupport = function () {
             return navigator.userAgent.match(/iPhone|iPad|iPod|Android|Dalvik/);
         },
@@ -50,11 +56,11 @@
             var embedded_shortlink = 'mcash://qr?code=' + shortlinkUrl;
 
             if (navigator.userAgent.match(/Android|Dalvik/)) {
-                location.href = shortlinkUrl;
+                exports.redirect_to(shortlinkUrl);
             } else {
-                location.href = embedded_shortlink;
+                exports.redirect_to(embedded_shortlink);
                 setTimeout(function () {
-                    location.href = MCASH_FALLBACK_DOWNLOAD_URL;
+                    exports.redirect_to(MCASH_FALLBACK_DOWNLOAD_URL);
                 }, 300);
             }
         },
@@ -165,9 +171,7 @@
             wrapper.appendChild(qrCode);
             wrapper.appendChild(nav);
             mCASHDiv.appendChild(wrapper);
-        },
-
-        exports = {};
+        };
 
     exports.displayQRorButton = function () {
         var mCASHDivs = document.getElementsByClassName('mcash-shortlink'),
