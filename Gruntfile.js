@@ -71,7 +71,7 @@ module.exports = function (grunt) {
             },
             build: {
                 src: 'dest/<%= pkg.name %>.js',
-                dest: 'dest/<%= pkg.name %>-min.js'
+                dest: 'dest/<%= pkg.name %>.min.js'
             }
         }
     });

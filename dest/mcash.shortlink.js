@@ -50,7 +50,7 @@
                 i;
 
             for (i = 0; i < document.scripts.length; i++) {
-                match = document.scripts[i].src && document.scripts[i].src.match(/^(.*)mcash\.shortlink(\-min)?\.js$/);
+                match = document.scripts[i].src && document.scripts[i].src.match(/^(.*)mcash\.shortlink(\.min)?\.js$/);
                 if (match && match[1]) {
                     parser = document.createElement('a');
                     parser.href = match[1];
