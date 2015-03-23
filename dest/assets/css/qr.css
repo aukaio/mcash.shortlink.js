@@ -26,13 +26,13 @@
     background-color: #fff;
     margin-bottom: 10px;
     width: auto;
-    padding: 20px;
+    padding: 12px;
 }
 
 .mcash-wrapper .mcash-qr-image img {
     width: auto;
-    max-width: 100%;
     height: auto;
+    max-width: 100%;
     display: block;
 }
 .mcash-nav {
