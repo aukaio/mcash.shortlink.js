@@ -25,8 +25,7 @@
         }
     };
 
-    var MCASH_FALLBACK_DOWNLOAD_URL = 'https://itunes.apple.com/no/app/mcash/id550136730?mt=8',
-        MCASH_SHORTLINK_ENDPOINT = 'http://mca.sh/',
+    var MCASH_SHORTLINK_ENDPOINT = 'http://mca.sh/',
         MCASH_SHORTLINK_DEFAULT_PREFIX = 's',
         MCASH_SHORTLINK_RE = /^[a-z]$/,
         MCASH_LOGO = 'assets/images/mCASH_logo.png',
@@ -37,8 +36,8 @@
             no: 'Åpne med',
             en: 'Open with'
         },
-        MCASH_DESKTOP_IOS = 'https://itunes.apple.com/no/app/mcash/id550136730?mt=8',
-        MCASH_DESKTOP_ANDROID = 'https://play.google.com/store/apps/details?id=no.mcash',
+        MCASH_DOWNLOAD_IOS = 'https://itunes.apple.com/no/app/mcash/id550136730?mt=8',
+        MCASH_DOWNLOAD_ANDROID = 'https://play.google.com/store/apps/details?id=no.mcash',
 
         platformHasNativeSupport = function () {
             return navigator.userAgent.match(/iPhone|iPad|iPod|Android|Dalvik/);
@@ -61,13 +60,15 @@
         },
 
         scan = function (shortlinkUrl) {
-            var embedded_shortlink = 'mcash://qr?code=' + shortlinkUrl;
+            var embedded_shortlink = 'mcash://qr?code=' + encodeURI(shortlinkUrl),
+                fallback = navigator.userAgent.match(/Android|Dalvik/) ?
+                    (MCASH_DOWNLOAD_ANDROID + '&referrer=' + encodeURI(shortlinkUrl)) :
+                    MCASH_DOWNLOAD_IOS;
 
             exports.redirect_to(embedded_shortlink);
-            _timeout = setTimeout(function () {
-                exports.redirect_to(MCASH_FALLBACK_DOWNLOAD_URL);
+            setTimeout(function () {
+                exports.redirect_to(fallback);
             }, 300);
-
         },
 
         loadCSS = function (cssId, href) {
@@ -89,8 +90,10 @@
         },
 
         createmCASHButton = function (mCASHDiv, unique_id, prefix, alternate, shortlink_url) {
-            var labelKey = mCASHDiv.getAttribute('data-mcash-lang') || 'no',
-                greeting = MCASH_LOCALE_MAP[labelKey] || MCASH_LOCALE_MAP.no,
+            var userLanguage = window.navigator.userLanguage || window.navigator.language,
+                language = userLanguage && userLanguage.split('-')[0],
+                labelKey = mCASHDiv.getAttribute('data-mcash-lang'),
+                greeting = MCASH_LOCALE_MAP[labelKey] || MCASH_LOCALE_MAP[language] || MCASH_LOCALE_MAP.no,
                 span,
                 mCASHPayImg,
                 mCASHButton,
@@ -163,14 +166,14 @@
             logo.setAttribute('class', 'mcash-logo');
 
             iOS = document.createElement('a');
-            iOS.setAttribute('href', MCASH_DESKTOP_IOS);
+            iOS.setAttribute('href', MCASH_DOWNLOAD_IOS);
             iOS.setAttribute('class', 'mcash-link mcash-ios');
             iOS.setAttribute('target', '_blank');
             iOS.setAttribute('title', 'Download mCASH from App Store');
             iOS.innerHTML = 'iOS';
 
             Android = document.createElement('a');
-            Android.setAttribute('href', MCASH_DESKTOP_ANDROID);
+            Android.setAttribute('href', MCASH_DOWNLOAD_ANDROID);
             Android.setAttribute('class', 'mcash-link mcash-android');
             Android.setAttribute('target', '_blank');
             Android.setAttribute('title', 'Download mCASH from Google Play');

@@ -98,6 +98,19 @@
             expect(mCASH.redirect_to).toHaveBeenCalledWith("mcash://qr?code=http://mca.sh/q/foo/");
         });
 
+        it('creates a custom shortlink on Android', function () {
+            setAgentAs("Dalvik");
+
+            mCASH.displayQRorButton();
+
+            var img = $('#c img[alt="http://mca.sh/s/foo/"]'),
+                button = $('#c button.paywithmcash');
+            expect(img.length).toBe(0);
+            expect(button.length).toBe(1);
+
+            button.click();
+            expect(mCASH.redirect_to).toHaveBeenCalledWith("mcash://qr?code=http://mca.sh/q/foo/");
+        });
     });
 
 })();
