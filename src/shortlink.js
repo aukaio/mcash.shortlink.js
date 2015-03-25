@@ -59,15 +59,17 @@
         },
 
         scan = function (shortlinkUrl) {
-            var embedded_shortlink = 'mcash://qr?code=' + encodeURI(shortlinkUrl),
-                fallback = navigator.userAgent.match(/Android|Dalvik/) ?
-                    (MCASH_DOWNLOAD_ANDROID + '&referrer=' + encodeURI(shortlinkUrl)) :
-                    MCASH_DOWNLOAD_IOS;
+            var is_ios = navigator.userAgent.match(/iPhone|iPad|iPod/),
+                common_part = '://qr?code=' + encodeURI(shortlinkUrl),
+                redirect_url = is_ios ? 'mcash' + common_part :
+                    'intent' + common_part + '#Intent;scheme=mcash;package=no.mcash;end';
 
-            exports.redirect_to(embedded_shortlink);
-            setTimeout(function () {
-                exports.redirect_to(fallback);
-            }, 300);
+            exports.redirect_to(redirect_url);
+            if (is_ios) {
+                setTimeout(function () {
+                    exports.redirect_to(MCASH_DOWNLOAD_IOS);
+                }, 300);
+            }
         },
 
         loadCSS = function (cssId, href) {

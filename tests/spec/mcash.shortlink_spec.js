@@ -67,7 +67,7 @@
             expect(button.length).toBe(1);
 
             button.click();
-            expect(mCASH.redirect_to).toHaveBeenCalledWith("mcash://qr?code=http://mca.sh/s/moo/");
+            expect(mCASH.redirect_to).toHaveBeenCalledWith('mcash://qr?code=http://mca.sh/s/moo/');
         });
 
         it('creates a QR button from an id and an argstring', function () {
@@ -81,7 +81,7 @@
             expect(button.length).toBe(1);
 
             button.click();
-            expect(mCASH.redirect_to).toHaveBeenCalledWith("mcash://qr?code=http://mca.sh/s/moo/far");
+            expect(mCASH.redirect_to).toHaveBeenCalledWith('mcash://qr?code=http://mca.sh/s/moo/far');
         });
 
         it('creates a custom shortlink', function () {
@@ -95,7 +95,7 @@
             expect(button.length).toBe(1);
 
             button.click();
-            expect(mCASH.redirect_to).toHaveBeenCalledWith("mcash://qr?code=http://mca.sh/q/foo/");
+            expect(mCASH.redirect_to).toHaveBeenCalledWith('mcash://qr?code=http://mca.sh/q/foo/');
         });
 
         it('creates a custom shortlink on Android', function () {
@@ -109,7 +109,7 @@
             expect(button.length).toBe(1);
 
             button.click();
-            expect(mCASH.redirect_to).toHaveBeenCalledWith("mcash://qr?code=http://mca.sh/q/foo/");
+            expect(mCASH.redirect_to).toHaveBeenCalledWith('intent://qr?code=http://mca.sh/q/foo/#Intent;scheme=mcash;package=no.mcash;end');
         });
     });
 
