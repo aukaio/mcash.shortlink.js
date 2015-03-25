@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "./node_modules/grunt-cli/bin/grunt",
-    "example": "python -m SimpleHTTPServer",
+    "example": "python -m SimpleHTTPServer 7080",
     "test": "./node_modules/grunt-cli/bin/grunt test"
   },
   "devDependencies": {

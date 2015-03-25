@@ -8,7 +8,7 @@ module.exports = function (grunt) {
             customTemplate: {
                 src: 'dest/<%= pkg.name %>.js',
                 options: {
-                    host: 'http://localhost:8080/',
+                    host: 'http://localhost:7999/',
                     specs: 'tests/spec/**/*.js',
                     summary: true,
                     template: 'tests/shortlink.tmpl',
@@ -31,7 +31,7 @@ module.exports = function (grunt) {
         connect: {
             server: {
                 options: {
-                    port: 8080,
+                    port: 7999,
                     keepalive: false
                 }
             }

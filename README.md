@@ -27,7 +27,7 @@ code to button (or fake your user agent and view on your laptop). Shows examples
 
 Try the example
 -------------
-Start a local example server `npm run example` and open [http://localhost:8000/example.html](http://localhost:8000/example.html) in your browser.
+Start a local example server `npm run example` and open [http://localhost:7080/example.html](http://localhost:7080/example.html) in your browser.
 
 Test suit
 -------
