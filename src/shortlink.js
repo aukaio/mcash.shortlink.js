@@ -119,7 +119,7 @@
                     exports.redirect_to(MCASH_DOWNLOAD_IOS);
                 }, 300);
             } else {
-                android_scan(redirect_url, 'mcash' + common_part, shortlinkUrl);
+                android_scan(redirect_url, 'mcash' + common_part, MCASH_DOWNLOAD_ANDROID);
             }
         },
 
