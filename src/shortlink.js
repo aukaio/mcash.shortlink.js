@@ -90,7 +90,7 @@
             }
         },
 
-        createmCASHButton = function (mCASHDiv, unique_id, prefix, alternate, shortlink_url) {
+        createmCASHButton = function (mCASHDiv, prefix, alternate, shortlink_url) {
             var userLanguage = window.navigator.userLanguage || window.navigator.language,
                 language = userLanguage && userLanguage.split('-')[0],
                 labelKey = mCASHDiv.getAttribute('data-mcash-lang'),
@@ -131,7 +131,7 @@
             mCASHDiv.appendChild(wrapper);
         },
 
-        createQRcode = function (mCASHDiv, unique_id, prefix, alternate, shortlink_url) {
+        createQRcode = function (mCASHDiv, prefix, alternate, shortlink_url) {
             var Android,
                 iOS,
                 logo,
@@ -153,7 +153,7 @@
                 text: shortlink_url,
                 width: 180,
                 height: 180,
-                correctLevel: QRCode.CorrectLevel.L,
+                correctLevel: QRCode.CorrectLevel.L
             });
 
             // Create the bottom navigation
@@ -225,9 +225,9 @@
                 shortlink_url = MCASH_SHORTLINK_ENDPOINT + shortlink_prefix + '/' + id;
 
                 if (native) {
-                    createmCASHButton(mCASHDiv, id, static_prefix, alternate, shortlink_url);
+                    createmCASHButton(mCASHDiv, static_prefix, alternate, shortlink_url);
                 } else {
-                    createQRcode(mCASHDiv, id, static_prefix, alternate, shortlink_url);
+                    createQRcode(mCASHDiv, static_prefix, alternate, shortlink_url);
                 }
             }
         }
