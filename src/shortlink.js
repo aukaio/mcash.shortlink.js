@@ -122,8 +122,6 @@
             mCASHButton.onclick = function () {
                 scan(shortlink_url);
             };
-            //mCASHButton.appendChild(mCASHPayImg);
-            //mCASHButton.appendChild(span);
 
             mCASHButton.appendChild(mCASHButtonWrap);
             mCASHButtonWrap.appendChild(span);
@@ -139,6 +137,7 @@
                 logo,
                 nav,
                 qrCode,
+                logoWrap,
                 wrapper;
 
             loadCSS('qrcss', prefix + MCASH_QR_CSS);
@@ -161,6 +160,10 @@
             nav = document.createElement('div');
             nav.setAttribute('class', 'mcash-nav');
 
+            logoWrap = document.createElement('a');
+            logoWrap.href = 'https://mcash.no/';
+            logoWrap.target = '_blank';
+
             // Create logo and download links
             logo = document.createElement('img');
             logo.setAttribute('src', prefix + MCASH_LOGO);
@@ -180,7 +183,8 @@
             Android.setAttribute('title', 'Download mCASH from Google Play');
             Android.innerHTML = 'Android';
 
-            nav.appendChild(logo);
+            logoWrap.appendChild(logo);
+            nav.appendChild(logoWrap);
             nav.appendChild(iOS);
             nav.appendChild(Android);
 
