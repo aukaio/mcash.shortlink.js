@@ -59,17 +59,68 @@
             return '/';
         },
 
+        android_scan = function (g_intent, custom, alt) {
+            var timer,
+                heartbeat,
+                iframe_timer,
+
+                clearTimers = function () {
+                    clearTimeout(timer);
+                    clearTimeout(heartbeat);
+                    clearTimeout(iframe_timer);
+                },
+
+                intervalHeartbeat = function () {
+                    if (document.webkitHidden || document.hidden) {
+                        clearTimers();
+                    }
+                },
+
+                tryIframeApproach = function () {
+                    var iframe = document.createElement("iframe");
+                    iframe.style.border = "none";
+                    iframe.style.width = "1px";
+                    iframe.style.height = "1px";
+                    iframe.onload = function () {
+                        exports.redirect_to(alt);
+                    };
+                    iframe.src = custom;
+                    document.body.appendChild(iframe);
+                },
+
+                tryWebkitApproach = function () {
+                    exports.redirect_to(custom);
+                    timer = setTimeout(function () {
+                        exports.redirect_to(alt);
+                    }, 2500);
+                };
+
+            heartbeat = setInterval(intervalHeartbeat, 200);
+            if (navigator.userAgent.match(/Chrome/)) {
+                exports.redirect_to(g_intent);
+            } else if (navigator.userAgent.match(/Firefox/)) {
+                tryWebkitApproach();
+                iframe_timer = setTimeout(function () {
+                    tryIframeApproach();
+                }, 1500);
+            } else {
+                tryIframeApproach();
+            }
+        },
+
         scan = function (shortlinkUrl) {
             var is_ios = navigator.userAgent.match(/iPhone|iPad|iPod/),
                 common_part = '://qr?code=' + encodeURI(shortlinkUrl),
                 redirect_url = is_ios ? 'mcash' + common_part :
-                    'intent' + common_part + '#Intent;scheme=mcash;package=no.mcash;end';
+                        'intent' + common_part + '#Intent;scheme=mcash;package=no.mcash;end';
 
-            exports.redirect_to(redirect_url);
             if (is_ios) {
+                exports.redirect_to(redirect_url);
                 setTimeout(function () {
                     exports.redirect_to(MCASH_DOWNLOAD_IOS);
                 }, 300);
+            } else {
+                android_scan(redirect_url, 'mcash' + common_part, shortlinkUrl);
             }
         },
 
@@ -91,7 +142,7 @@
             }
         },
 
-        createmCASHButton = function (mCASHDiv, unique_id, prefix, alternate, shortlink_url) {
+        createmCASHButton = function (mCASHDiv, prefix, alternate, shortlink_url) {
             var userLanguage = window.navigator.userLanguage || window.navigator.language,
                 language = userLanguage && userLanguage.split('-')[0],
                 labelKey = mCASHDiv.getAttribute('data-mcash-lang'),
@@ -132,7 +183,7 @@
             mCASHDiv.appendChild(wrapper);
         },
 
-        createQRcode = function (mCASHDiv, unique_id, prefix, alternate, shortlink_url) {
+        createQRcode = function (mCASHDiv, prefix, alternate, shortlink_url) {
             var Android,
                 iOS,
                 logo,
@@ -154,7 +205,7 @@
                 text: shortlink_url,
                 width: 180,
                 height: 180,
-                correctLevel: QRCode.CorrectLevel.L,
+                correctLevel: QRCode.CorrectLevel.L
             });
 
             // Create the bottom navigation
@@ -226,9 +277,9 @@
                 shortlink_url = MCASH_SHORTLINK_ENDPOINT + shortlink_prefix + '/' + id;
 
                 if (native) {
-                    createmCASHButton(mCASHDiv, id, static_prefix, alternate, shortlink_url);
+                    createmCASHButton(mCASHDiv, static_prefix, alternate, shortlink_url);
                 } else {
-                    createQRcode(mCASHDiv, id, static_prefix, alternate, shortlink_url);
+                    createQRcode(mCASHDiv, static_prefix, alternate, shortlink_url);
                 }
             }
         }

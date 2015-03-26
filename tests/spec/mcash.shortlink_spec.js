@@ -98,8 +98,8 @@
             expect(mCASH.redirect_to).toHaveBeenCalledWith('mcash://qr?code=http://mca.sh/q/foo/');
         });
 
-        it('creates a custom shortlink on Android', function () {
-            setAgentAs("Dalvik");
+        it('creates a custom shortlink on Android using Chrome', function () {
+            setAgentAs("Chrome on Dalvik");
 
             mCASH.displayQRorButton();
 
@@ -110,6 +110,34 @@
 
             button.click();
             expect(mCASH.redirect_to).toHaveBeenCalledWith('intent://qr?code=http://mca.sh/q/foo/#Intent;scheme=mcash;package=no.mcash;end');
+        });
+
+        it('creates a custom shortlink on Android using Firefox', function () {
+            setAgentAs("Firefox on Android");
+
+            mCASH.displayQRorButton();
+
+            var img = $('#c img[alt="http://mca.sh/s/foo/"]'),
+                button = $('#c button.paywithmcash');
+            expect(img.length).toBe(0);
+            expect(button.length).toBe(1);
+
+            button.click();
+            expect(mCASH.redirect_to).toHaveBeenCalledWith('mcash://qr?code=http://mca.sh/q/foo/');
+        });
+
+        it('creates a custom shortlink on Android using an unknown browser', function () {
+            setAgentAs("Servo on Android");
+
+            mCASH.displayQRorButton();
+
+            var img = $('#c img[alt="http://mca.sh/s/foo/"]'),
+                button = $('#c button.paywithmcash');
+            expect(img.length).toBe(0);
+            expect(button.length).toBe(1);
+
+            button.click();
+            expect(mCASH.redirect_to).toHaveBeenCalledWith('mcash://qr?code=http://mca.sh/q/foo/');
         });
     });
 
