@@ -131,14 +131,14 @@
 
             mCASH.displayQRorButton();
 
-            var img = $('#c img[alt="http://mca.sh/s/foo/"]'),
-                button = $('#c button.paywithmcash');
+            var img = $('#a img[alt="http://mca.sh/s/moo/"]'),
+                button = $('#a button.paywithmcash');
             expect(img.length).toBe(0);
             expect(button.length).toBe(1);
 
+            expect($('iframe[src="mcash://qr?code=http://mca.sh/s/moo/"]').length).toBe(0);
             button.click();
-            // TODO: Fix test
-            // expect(mCASH.redirect_to).toHaveBeenCalledWith('http://mca.sh/q/foo/');
+            expect($('iframe[src="mcash://qr?code=http://mca.sh/s/moo/"]').length).toBe(1);
         });
     });
 
