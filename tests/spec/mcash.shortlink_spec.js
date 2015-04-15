@@ -112,6 +112,20 @@
             expect(mCASH.redirect_to).toHaveBeenCalledWith('intent://qr?code=http://mca.sh/q/foo/#Intent;scheme=mcash;package=no.mcash;end');
         });
 
+        it('creates a custom shortlink on Android using Chrome', function () {
+            setAgentAs("Chrome on Dalvik");
+
+            mCASH.displayQRorButton();
+
+            var img = $('#e img[alt="http://mca.sh/s/goo/"]'),
+                button = $('#e button.paywithmcash');
+            expect(img.length).toBe(0);
+            expect(button.length).toBe(1);
+
+            button.click();
+            expect(mCASH.redirect_to).toHaveBeenCalledWith('intent://qr?code=http://mca.sh/s/goo/#Intent;scheme=mcash;package=no.mcashtestbed;end');
+        });
+
         it('creates a custom shortlink on Android using Firefox', function () {
             setAgentAs("Firefox on Android");
 
