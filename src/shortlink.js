@@ -37,6 +37,7 @@
         },
         MCASH_DOWNLOAD_IOS = 'https://itunes.apple.com/no/app/mcash/id550136730?mt=8',
         MCASH_DOWNLOAD_ANDROID = 'https://play.google.com/store/apps/details?id=no.mcash',
+        MCASH_INTENT = 'no.mcash',
 
         platformHasNativeSupport = function () {
             return navigator.userAgent.match(/iPhone|iPad|iPod|Android|Dalvik/);
@@ -107,11 +108,11 @@
             }
         },
 
-        scan = function (shortlinkUrl) {
+        scan = function (shortlinkUrl, intent) {
             var is_ios = navigator.userAgent.match(/iPhone|iPad|iPod/),
                 common_part = '://qr?code=' + encodeURI(shortlinkUrl),
                 redirect_url = is_ios ? 'mcash' + common_part :
-                        'intent' + common_part + '#Intent;scheme=mcash;package=no.mcash;end';
+                        'intent' + common_part + '#Intent;scheme=mcash;package=' + (intent || MCASH_INTENT) + ';end';
 
             if (is_ios) {
                 exports.redirect_to(redirect_url);
@@ -119,7 +120,7 @@
                     exports.redirect_to(MCASH_DOWNLOAD_IOS);
                 }, 300);
             } else {
-                android_scan(redirect_url, 'mcash' + common_part, MCASH_DOWNLOAD_ANDROID);
+                android_scan(redirect_url, 'mcash' + common_part, MCASH_DOWNLOAD_ANDROID, intent);
             }
         },
 
@@ -141,7 +142,7 @@
             }
         },
 
-        createmCASHButton = function (mCASHDiv, prefix, alternate, shortlink_url) {
+        createmCASHButton = function (mCASHDiv, prefix, alternate, shortlink_url, intent) {
             var userLanguage = window.navigator.userLanguage || window.navigator.language,
                 language = userLanguage && userLanguage.split('-')[0],
                 labelKey = mCASHDiv.getAttribute('data-mcash-lang'),
@@ -171,7 +172,7 @@
             mCASHButton.type = 'button';
             mCASHButton.className = 'paywithmcash' + (alternate ? ' mcash-green' : '');
             mCASHButton.onclick = function () {
-                scan(shortlink_url);
+                scan(shortlink_url, intent);
             };
 
             mCASHButton.appendChild(mCASHButtonWrap);
@@ -257,6 +258,7 @@
             native = platformHasNativeSupport(),
             mCASHDiv,
             alternate,
+            intent,
             id,
             static_prefix = getPrefix(),
             shortlink_prefix,
@@ -271,12 +273,13 @@
                 if (!MCASH_SHORTLINK_RE.exec(shortlink_prefix)) {
                     shortlink_prefix = MCASH_SHORTLINK_DEFAULT_PREFIX;
                 }
+                intent = mCASHDiv.getAttribute('data-shortlink-intent');
                 id = id.trim() + '/' + (mCASHDiv.getAttribute('data-shortlink-argstring') || '');
                 alternate = mCASHDiv.getAttribute('data-alternate') === 'true';
                 shortlink_url = MCASH_SHORTLINK_ENDPOINT + shortlink_prefix + '/' + id;
 
                 if (native) {
-                    createmCASHButton(mCASHDiv, static_prefix, alternate, shortlink_url);
+                    createmCASHButton(mCASHDiv, static_prefix, alternate, shortlink_url, intent);
                 } else {
                     createQRcode(mCASHDiv, static_prefix, alternate, shortlink_url);
                 }
