@@ -32,6 +32,7 @@
         MCASH_BUTTON_CSS = 'assets/css/button.css',
         MCASH_QR_CSS = 'assets/css/qr.css',
         MCASH_LOCALE_MAP = {
+	    nb: 'Åpne med',
             no: 'Åpne med',
             en: 'Open with'
         },
@@ -142,16 +143,17 @@
         },
 
         createmCASHButton = function (mCASHDiv, prefix, alternate, shortlink_url) {
-            var userLanguage = window.navigator.userLanguage || window.navigator.language,
+	    var userLanguage = window.navigator.languages ? window.navigator.languages[0] : (window.navigator.language || window.navigator.userLanguage),
                 language = userLanguage && userLanguage.split('-')[0],
                 labelKey = mCASHDiv.getAttribute('data-mcash-lang'),
-                greeting = MCASH_LOCALE_MAP[labelKey] || MCASH_LOCALE_MAP[language] || MCASH_LOCALE_MAP.no,
+                greeting = MCASH_LOCALE_MAP[labelKey] || MCASH_LOCALE_MAP[language] || MCASH_LOCALE_MAP.en,
                 span,
                 mCASHPayImg,
                 mCASHButton,
                 mCASHButtonWrap,
                 wrapper;
 
+	    
             loadCSS('shortlinkcss', prefix + MCASH_BUTTON_CSS);
 
             wrapper = document.createElement('div');
