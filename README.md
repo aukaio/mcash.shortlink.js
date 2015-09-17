@@ -41,10 +41,19 @@ After building the code deploy the content of `dest` folder. Pick either mcash.s
 
 ### Example and customization
 
-[press here](https://rawgit.com/mcash/mcash.shortlink.js/master/example.html)
-You can open this link in on your phone to see how it changes from QR
-code to button (or fake your user agent and view on your laptop). Shows examples of customization with alternate look and language variants.
+[Example](https://rawgit.com/mcash/mcash.shortlink.js/master/example.html)
 
+You can open this link in on your phone to see how it changes from QR-code to button (or fake your user agent and view on your laptop). Shows examples of customization with alternate look and language variants.
+
+#### QR-Code
+
+![Alt text](/example/mcash_shortlink_qr_code.png)
+
+#### Button
+
+![Alt text](/example/mcash_shortlink_button_no.png "Norwegian version")
+
+![Alt text](/example/mcash_shortlink_button_en.png "English version")
 
 ### Try the example
 
