@@ -24,6 +24,10 @@
         }
     };
 
+    exports.platformHasNativeSupport = function () {
+        return navigator.userAgent.match(/iPhone|iPad|iPod|Android|Dalvik/);
+    };
+
     var MCASH_SHORTLINK_ENDPOINT = 'http://mca.sh/',
         MCASH_SHORTLINK_DEFAULT_PREFIX = 's',
         MCASH_SHORTLINK_RE = /^[a-z]$/,
@@ -39,17 +43,13 @@
         MCASH_DOWNLOAD_IOS = 'https://itunes.apple.com/no/app/mcash/id550136730?mt=8',
         MCASH_DOWNLOAD_ANDROID = 'https://play.google.com/store/apps/details?id=no.mcash',
 
-        platformHasNativeSupport = function () {
-            return navigator.userAgent.match(/iPhone|iPad|iPod|Android|Dalvik/);
-        },
-
         getPrefix = function () {
             var parser,
                 match,
                 i;
 
             for (i = 0; i < document.scripts.length; i++) {
-                match = document.scripts[i].src && document.scripts[i].src.match(/^(.*)mcash\.shortlink(\.min)?\.js$/);
+                match = document.scripts[i].src && document.scripts[i].src.match(/^(.*)mcash\.shortlink(.[\.\d]*)?(\.min)?\.js(\?.*)?$/);
                 if (match && match[1]) {
                     parser = document.createElement('a');
                     parser.href = match[1];
@@ -256,7 +256,7 @@
 
     exports.displayQRorButton = function () {
         var mCASHDivs = document.getElementsByClassName('mcash-shortlink'),
-            native = platformHasNativeSupport(),
+            native = exports.platformHasNativeSupport(),
             mCASHDiv,
             alternate,
             id,
